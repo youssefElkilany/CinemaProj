@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 const connectDB = async()=>{
-    return await mongoose.connect("mongodb://0.0.0.0:27017/Cinema").then(()=>{
+    return await mongoose.connect(process.env.DB_ATLAS).then(()=>{
         console.log("DB is connected")
     }).catch(err=>{
         console.log(`DB is not connected`)
