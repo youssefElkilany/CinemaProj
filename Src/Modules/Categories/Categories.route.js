@@ -5,10 +5,11 @@ const router = Router()
 
 router.route('/')
 //.get(categoryController.getAllCategories)
+.get(categoryController.getAllCategories)
 .post(categoryController.addCategory)
 .delete(categoryController.deleteCat)
 
-router.get("/category",categoryController.getCategory)
+router.get("/category/:cinemaType",categoryController.getOneCategory)
 
 
 export default router

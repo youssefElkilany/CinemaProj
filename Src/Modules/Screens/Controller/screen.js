@@ -11,6 +11,14 @@ export const getScreens = asyncHandler(async (req,res,next)=>{
    return getScreen
 })
 
+export const getScreenss = asyncHandler(async (req,res,next)=>{
+
+    const getScreen = await screenModel.find()
+
+    return res.json({Msg:"all screens",getScreen})
+   
+})
+
 
 
 export const addScreen =asyncHandler( async (req,res,next)=>{

@@ -6,8 +6,26 @@ export const getAllCategories = async(req,res,next)=>{
     const cat = await catModel.find()
     console.log(cat)
 
+    return res.json({msg:"done",cat})
+   //return cat
+}
+
+export const getAllCategories2 = async(req,res,next)=>{
+
+    const cat = await catModel.find()
+    console.log(cat)
+
    // return res.json({msg:"done",cat})
-   return cat
+   return res.status(200).json({cat})
+}
+
+export const getOneCategory = async(req,res,next)=>{
+    const {cinemaType} = req.params
+
+    const cat = await catModel.findOne({cinemaType})
+    
+
+    return res.status(200).json({msg:"done",cat})
 }
 
 export const getCategory = async(_,args)=>{
@@ -38,7 +56,7 @@ export const addCategory = async (req,res,next)=>{
     const findCat = await catModel.findOne({cinemaType})
     if(findCat)
     {
-       return res.json("type is already exist")
+       return res.json({Msg:"type is already exist"})
     }
     //handle price of every cinemaType
 

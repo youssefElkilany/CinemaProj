@@ -12,6 +12,13 @@ export const getfilms = async (req,res,next)=>{
     return Films
 }
 
+export const getfilmss = async (req,res,next)=>{
+
+    const Films = await detailsModel.find()
+
+    return res.status(200).json({Msg:"all films",Films})
+}
+
 export const addfilmDetails = async (req,res,next)=>{
 
     const {filmName,actors,writers,directors,genre,releaseDate,duration,image,trailer,coverImages} = req.body
