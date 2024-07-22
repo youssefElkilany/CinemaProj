@@ -9,8 +9,8 @@ const userSchema = new Schema({
         max: [20, 'max length 2 char']
 
     },
-    firstName:String,
-    lastName:String,
+    // firstName:String,
+    // lastName:String,
     email: {
         type: String,
         unique: [true, 'email must be unique value'],
@@ -23,40 +23,41 @@ const userSchema = new Schema({
     phone: {
         type: String,
     },
-    role: {
-        type: String,
-        default: 'User',
-        enum: ['User', 'Admin','Instructor']
-    },
+    // role: {
+    //     type: String,
+    //     default: 'User',
+    //     enum: ['User', 'Admin','Instructor']
+    // },
     // active: {
     //     type: Boolean,
     //     default: false,
     // },
-    confirmEmail: {
-        type: Boolean,
-        default: false,
-    },
-    blocked: {
-        type: Boolean,
-        default: false, //soft delete
-    },
-    image: String,
-    DOB: String,
-    code:String,
-    favourites:[{type:Types.ObjectId,ref:"Product"}],
-    age:{type:String,required:true},
+    // confirmEmail: {
+    //     type: Boolean,
+    //     default: false,
+    // },
+    // blocked: {
+    //     type: Boolean,
+    //     default: false, //soft delete
+    // },
+    // image: String,
+    // DOB: String,
+    // code:String,
+    
+   // favourites:[{type:Types.ObjectId,ref:"Product"}],
+   // age:{type:String,required:true},
 
-    driverLiscence:{},
-    criminalRecord:{},
-    status:{type:String,
-    default:"available",
-    enum:['busy','available']},
+    // driverLiscence:{},
+    // criminalRecord:{},
+    // status:{type:String,
+    // default:"available",
+    // enum:['busy','available']},
     rating:Number,
 
-    location:{},
-    nationalId:{},
-    noOfConpletedSessions:{type:Number,default:0}, // elmfrood lel etneen
-    instructorCompletedSession:{type:Number,default:0} // mmkn n7ot ids of instructor as array
+    // location:{},
+    // nationalId:{},
+    // noOfConpletedSessions:{type:Number,default:0}, // elmfrood lel etneen
+    // instructorCompletedSession:{type:Number,default:0} // mmkn n7ot ids of instructor as array
 }, {
     timestamps: true
 })

@@ -17,7 +17,7 @@ const reserveSchema = new Schema({
             required:true
         },
         seat:[{
-            seatDegree:{
+            seatDegree:{ // => A or B or C
                 type:String,
                 required:true
             },
@@ -59,7 +59,7 @@ const reserveSchema = new Schema({
         }
     },
     
-    tickets:{type:Number,default:1,require:true},
+    tickets:{type:Number,default:1,required:true},
     couponId:{type:Types.ObjectId,ref:'Coupon'},
     subTotal:{type:Number,required:true}, // mn 8eer discount
     total:{type:Number,required:true}, // n7sb 3aleeh discount

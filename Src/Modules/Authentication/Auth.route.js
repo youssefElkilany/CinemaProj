@@ -10,3 +10,5 @@ router.post("/forgetpass",authController.forgetPassword)
 
 router.post("/signup2",authController.signUp2)
 router.post("/login2",authController.login2)
+
+export default router
