@@ -131,11 +131,11 @@ export const signUp2 = asyncHandler(async (req,res,next)=>{
     const findEmail = await userModel.findOne({email})
     if(findEmail)
     {
-        return res.json("email already exist")
+        return res.json({Msg:"email already exist"})
     }
     if(password !=cpassword)
     {
-        return res.json("password mismatch")
+        return res.json({Msg:"password mismatch"})
     }
    const hashedPass = bcrypt.hashSync(password,6)
    const cryptedPhone = cryptoJS.AES.encrypt(phone,'secret').toString()
@@ -179,11 +179,11 @@ export const login2 = asyncHandler(async (req,res,next)=>{
     const findUser = await userModel.findOne({email})
     if(!findUser)
     {
-        return res.json("email not found")
+        return res.json({Msg:"email not found"})
     }
     if(!bcrypt.compareSync(password,findUser.password))
     {
-        return res.json("wrong password")
+        return res.json({Msg:"wrong password"})
     }
 
 
