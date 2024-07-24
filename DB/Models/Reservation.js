@@ -72,7 +72,8 @@ const reserveSchema = new Schema({
         type:String,
         default:"placed",
         enum:['waitingForPayment','cancelled','placed']
-    }
+    },
+    cinemaId:{type:Types.ObjectId,ref:"Cinema",required:true}
 
 
 

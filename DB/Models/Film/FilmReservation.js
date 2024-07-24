@@ -109,7 +109,8 @@ const filmreserveSchema = new Schema({
         type:Types.ObjectId,
         ref:"Category",
         required:true
-    }
+    },
+    cinemaId:{type:Types.ObjectId,ref:"Cinema",required:true}// reservation will be at this cinema
 
 })
 

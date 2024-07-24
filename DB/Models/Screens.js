@@ -34,7 +34,8 @@ const screenSchema = new Schema ({
         type:Types.ObjectId,
         ref:'Category',
         required:true
-    }
+    },
+    cinemaId:{type:Types.ObjectId,ref:"Cinema",required:true}//to know that screens related to this cinema
 })
 
 const screenModel = model('Screen',screenSchema)

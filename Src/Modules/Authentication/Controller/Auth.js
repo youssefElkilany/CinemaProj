@@ -139,17 +139,6 @@ export const signUp2 = asyncHandler(async (req,res,next)=>{
     }
    const hashedPass = bcrypt.hashSync(password,6)
    const cryptedPhone = cryptoJS.AES.encrypt(phone,'secret').toString()
-   // nktb el7aga el asasya el required for both b3deeha n3ml keda
-//    if(role == "Instructor")
-//    {
-//     // n3ml hena el7agat el required lel instructor
-//     // create htkoon gowa hena 
-//    }
-//    if(role == "User")
-//    {
-//     // n3ml hena el7agat el required lel User
-//     // create htkoon gowa hena 
-//    }
 
 
    const user = await userModel.create({name,email,password:hashedPass,phone:cryptedPhone})
@@ -157,19 +146,10 @@ export const signUp2 = asyncHandler(async (req,res,next)=>{
    {
     return res.json("something wrong in creating user")
    }
-   console.log({user})
- //  const token = jwt.sign({_id:user._id,email},"email") // n5ly token dont expire
-   //const token2 = jwt.sign({_id:user._id,email},"email",{expiresIn:"24h"})
-
-//    const html = `<a href = "${req.protocol}://${req.headers.host}/auth/emailConfirmation/${token}">EmailConfirmation </a>`
 
 //    sendEmail({to:user.email,subject:"confirmationEmail",html})
 
-   // hn7ot hena send email
    return res.json({Msg:"check ur email to verify ur account"})
-
-
-
 })
 
 export const login2 = asyncHandler(async (req,res,next)=>{
@@ -188,19 +168,6 @@ export const login2 = asyncHandler(async (req,res,next)=>{
 
 
    const token = jwt.sign({_id:findUser._id,email:findUser.email},"secret",{expiresIn:"3h"})
-    //elmfrood mn 3nd frontEnd aw ana
-    // if(findUser.role == "Instructor")
-    // {
-    //     return res.json({token,Msg:"login succssessfully",Role:"instructor"})
-    // }
-    // else if(findUser.role == "User")
-    // {
-    //     return res.json({token,Msg:"login succssessfully",Role:"User"})
-    // }
    
         return res.json({token,Msg:"login succssessfully"})
-    
-
-    
-    
 })
