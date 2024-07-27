@@ -23,6 +23,10 @@ export const getOneCategory = async(req,res,next)=>{
     const {cinemaType} = req.params
 
     const cat = await catModel.findOne({cinemaType})
+    if(!cat)
+    {
+        return next(new Error("category is not found"))
+    }
     
 
     return res.status(200).json({msg:"done",cat})

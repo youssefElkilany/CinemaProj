@@ -13,7 +13,7 @@ export const schema = new GraphQLSchema({
             getresponse:{
 type:GraphQLString,
 resolve: ()=>{
-    return "hello bitch"
+    return "hello"
 }
             },
             ...categoryFields,
