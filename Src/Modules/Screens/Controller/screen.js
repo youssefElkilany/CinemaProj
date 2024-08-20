@@ -1,4 +1,5 @@
 import catModel from "../../../../DB/Models/Categories.js"
+import cinemaModel from "../../../../DB/Models/Cinema.js"
 import screenModel from "../../../../DB/Models/Screens.js"
 import { asyncHandler } from "../../../Utils/ErrorHandling.js"
 
@@ -23,21 +24,26 @@ export const getScreenss = asyncHandler(async (req,res,next)=>{
 
 export const addScreen =asyncHandler( async (req,res,next)=>{
  
-    const {screenName,categoryId,seatsA,seatsB,seatsC,seatsD,seatsF,seatsE} = req.body
+    const {screenName,cinemaId,categoryId,seatsA,seatsB,seatsC,seatsD,seatsF,seatsE} = req.body
 
-    const findCategory = await catModel.findById(categoryId)
+    const findCinema = await cinemaModel.findById(cinemaId)
+    if(!findCinema)
+    {
+        return next(new Error("cinemaId not found"))
+    }
+    const findCategory = await catModel.findOne({_id:categoryId,cinemaId})
     if(!findCategory)
     {
-        return res.json("categoryId not found")
+        return next(new Error("categoryId not found"))
     }
 
-    const findscreen  = await screenModel.findOne({screenName,categoryId})
+    const findscreen  = await screenModel.findOne({screenName,categoryId,cinemaId})
     if(findscreen)
     {
-        return res.json("screen already exist with this category")
+        return next(new Error("screen already exist with this category and cinema"))
     }
 
-    const addScreen = await screenModel.create({screenName,categoryId,seatsA,seatsB,seatsC,seatsD,seatsF,seatsE})
+    const addScreen = await screenModel.create({screenName,categoryId,cinemaId,seatsA,seatsB,seatsC,seatsD,seatsF,seatsE})
 
     return res.json({msg:"added",addScreen})
 
@@ -114,8 +120,8 @@ export const deleteScreen =asyncHandler( async (req,res,next)=>{
     const removeScreen = await screenModel.findByIdAndDelete(req.body.id)
     if(!removeScreen)
     {
-        return res.json("id not found")
+        return res.json({Msg:"id not found"})
     }
 
-    return res.json("screen has removed")
+    return res.json({Msg:"screen has removed"})
 })

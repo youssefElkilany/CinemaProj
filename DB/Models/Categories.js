@@ -3,9 +3,8 @@ import { Schema,Types,model } from "mongoose";
 const catSchema = new Schema ({
     cinemaType:{
         type:String,
-        unique:true,
         uppercase:true,
-        enum:["IMAX","3D","4D","2D"],
+        enum:["IMAX","3D","4D","2D","standard"],
         required:true
     },
     price:{

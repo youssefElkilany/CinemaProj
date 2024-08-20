@@ -12,7 +12,7 @@ export const addCinema = asyncHandler(async(req,res,next)=>{
     const {cinemaName,location} = req.body
 
     const findCinema = await cinemaModel.findOne({cinemaName})
-    if(!findCinema)
+    if(findCinema)
     {
         return next(new Error("cinema already exist"))
     }
@@ -28,7 +28,7 @@ export const addCinema = asyncHandler(async(req,res,next)=>{
 
 export const updateCinema = asyncHandler(async(req,res,next)=>{
 
-    const {cinemaId} = req.params
+    const {cinemaId} = req.query
     const {cinemaName , location} = req.body
     const findCinema = await cinemaModel.findById({_id:cinemaId})
     if(!findCinema)
@@ -63,7 +63,7 @@ export const updateCinema = asyncHandler(async(req,res,next)=>{
 })
 
 export const deleteCinema = asyncHandler(async(req,res,next)=>{
-    const {cinemaId} = req.params
+    const {cinemaId} = req.query
 
     const findCinema = await cinemaModel.findByIdAndDelete({cinemaId})
     if(!findCinema)
@@ -71,5 +71,5 @@ export const deleteCinema = asyncHandler(async(req,res,next)=>{
         return next(new Error("id not found"))
     }
 
-    return res.status(200).json("cinema deleted")
+    return res.status(200).json({Msg:"cinema deleted"})
 })
